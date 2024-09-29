@@ -139,7 +139,7 @@
 
                 recognition.onresult = function (event) {
                     const transcript = event.results[0][0].transcript.toLowerCase();
-                    if (transcript.includes("i love you john rey")) {
+                    if (transcript.includes("hello")) {
                         document.getElementById('statusMessage').textContent = "Recognized 'I love you Johnrey'! Get ready...";
                         triggerBalloonAnimation();
                     } else {
