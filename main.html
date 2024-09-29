@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Aya!</title>
+    <style>
+        body {
+            font-family: 'Arial, sans-serif';
+            background-image: url('background.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.729);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #ff69b4;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .balloons {
+            width: 100px;
+            height: 150px;
+            position: absolute;
+            bottom: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { bottom: -150px; }
+            50% { bottom: 70vh; }
+            100% { bottom: -150px; }
+        }
+
+        .message {
+            font-size: 1.5em;
+            margin: 20px 0;
+            line-height: 1.5;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid;
+            font-family: 'Courier', monospace;
+            animation: typing 4s steps(40) 1s forwards;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        button {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff1493;
+        }
+
+        .carousel {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            overflow: hidden;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .carousel-images img {
+            width: 100%;
+            max-width: 500px;
+            max-height: 500px;
+            height: auto;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .carousel-controls button {
+            background-color: #ff69b4;
+            border: none;
+            color: white;
+            padding: 10px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+        }
+
+        .carousel-controls button:hover {
+            background-color: #ff1493;
+            transform: scale(1.2);
+        }
+
+        .videos {
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .video-container {
+            width: 100%;
+            margin-bottom: 20px;
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #surpriseMessage {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #ff1493;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .message {
+                font-size: 1em;
+            }
+
+            .balloons {
+                width: 80%;
+            }
+
+            button {
+                padding: 8px 16px;
+                font-size: 0.8em;
+            }
+
+            .carousel {
+                width: 100%;
+            }
+
+            .carousel-images img {
+                max-width: 100%;
+                width: 400px !important;
+                height: 500px !important;
+            }
+        }
+
+        .balloon {
+            width: 100px;
+            height: 200px;
+        }
+
+        /* Image Gallery Section */
+        .image-gallery {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .image-gallery h2 {
+            font-size: 2em;
+            color: #ff69b4;
+            margin-bottom: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            justify-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid img {
+            width: 300px;
+            height: 400px !important;
+            max-width: 300px;
+       
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid img {
+                width: 150px;
+                height: 150px !important;
+            }
+        }
+
+        /* Gift Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 1000px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            font-size: 32px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .gift-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .gift-button img {
+            width: 100px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .gift-button img:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy Birthday Aya!</h1>
+        <div class="balloons">
+            <img class="balloon" src="balloon.png" alt="Balloons">
+        </div>
+        <p class="message">Hi love, happy birthday! hihi ihh basta! 💖🎉</p>
+        <button onclick="playMusic()">Play Birthday Song 🎶</button>
+        <audio id="birthdaySong" src="bdaysong.mp3"></audio>
+
+        <!-- Carousel Section -->
+        <div class="carousel">
+            <div class="carousel-images">
+                <img src="aya1.jpg" alt="Aya 1">
+                <img src="aya2.jpg" alt="Aya 2">
+                <img src="aya3.jpg" alt="Aya 3">
+            </div>
+        </div>
+
+        <div class="carousel-controls">
+            <button onclick="prevSlide()">&#10094;</button>
+            <button onclick="nextSlide()">&#10095;</button>
+        </div>
+
+        <!-- Videos Section -->
+        <div class="videos">
+            <h2>Birthday Dance for Aya!</h2>
+            <div class="video-container">
+                <iframe src="budots.mp4"></iframe>
+            </div>
+        </div>
+
+        <!-- Surprise Message -->
+        <div id="surpriseMessage">
+            <h2>I love you so much, Aya! You're the best!</h2>
+            <img src="surprise.jpg" alt="Surprise" width="300px">
+        </div>
+
+        <!-- Image Gallery Section -->
+        <div class="image-gallery">
+            <h2>pektur pektur</h2>
+            <div class="gallery-grid">
+                <img src="a.jpg" alt="Gallery Image 1">
+                <img src="b.jpg" alt="Gallery Image 2">
+                <img src="c.jpg" alt="Gallery Image 3">
+                <img src="d.jpg" alt="Gallery Image 4">
+                <img src="e.jpg" alt="Gallery Image 5">
+                <img src="f.jpg" alt="Gallery Image 6">
+           
+            </div>
+        </div>
+
+        <!-- Gift Button -->
+        <button class="gift-button" onclick="openModal()">
+            <p style="font-weight: 500; color: black;">u open</p>
+            <img src="gift.png" alt="Gift">
+        </button>
+
+        <!-- Modal -->
+        <div id="giftModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>For my baby</h2>
+                <p>Happy Birthday my ayaaaa aaaa, it's your birthday na. bilis ng panahon hehe. anyways you know naman na how much i love you, i'm always here for you. U always study well oki? alam mo naman na number 1 fan mo me palagi. Ik ayaw mo na or stuffs pero i really want to spend more years? uh decades? bastaa
+                    i love you so much and maging sucessful tayo. owki? mahal kita palagi.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-images img');
+        const totalSlides = slides.length;
+
+        function showSlide(slideIndex) {
+            const carouselWidth = slides[0].clientWidth;
+            document.querySelector('.carousel-images').style.transform = `translateX(${-carouselWidth * slideIndex}px)`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function playMusic() {
+            const song = document.getElementById('birthdaySong');
+            song.play();
+        }
+
+        // Modal functions
+        function openModal() {
+            document.getElementById('giftModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('giftModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
