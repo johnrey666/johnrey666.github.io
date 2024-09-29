@@ -113,7 +113,7 @@
 <body>
     <div class="container">
         <h1>Welcome!</h1>
-        <p>Please say "I love you Johnrey" to continue.</p>
+        <p>Please say "hello" to continue.</p>
         <button id="startButton" onclick="startRecognition()">Click to Start Voice Recognition</button>
         <p id="statusMessage"></p>
     </div>
@@ -133,17 +133,17 @@
                 recognition.continuous = false;
 
                 recognition.onstart = function () {
-                    document.getElementById('statusMessage').textContent = "Listening... please say 'I love you Johnrey'.";
+                    document.getElementById('statusMessage').textContent = "Listening... please say 'hello'.";
                     isRecognizing = true;
                 };
 
                 recognition.onresult = function (event) {
                     const transcript = event.results[0][0].transcript.toLowerCase();
                     if (transcript.includes("hello")) {
-                        document.getElementById('statusMessage').textContent = "Recognized 'I love you Johnrey'! Get ready...";
+                        document.getElementById('statusMessage').textContent = "Recognized 'hello'! Get ready...";
                         triggerBalloonAnimation();
                     } else {
-                        document.getElementById('statusMessage').textContent = "Please try again and say 'I love you Johnrey'.";
+                        document.getElementById('statusMessage').textContent = "Please try again and say 'hello'.";
                     }
                     isRecognizing = false;
                 };
